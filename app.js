@@ -135,16 +135,17 @@ function previewToken(x,color){
     let secondaryColor;
     if(color == "yellow"){ 
         color = "#fce12d";
-        secondaryColor = "#d9c127";
+        secondaryColor = "#f2cc0f";
     }
     else{
         secondaryColor = "#d10000";
     }
 
     clearPreview();
-
+    
+    ctx.shadowBlur = 3;
     ctx.beginPath();
-    ctx.arc(x, canvas.height/14, (canvas.width/14)-10, 0, Math.PI*2);
+    ctx.arc(x, canvas.height/14, (canvas.width/14)-8, 0, Math.PI*2);
     ctx.fillStyle = secondaryColor;
     ctx.fill();
 
@@ -152,6 +153,7 @@ function previewToken(x,color){
     ctx.arc(x, canvas.height/14, (canvas.width/14)-15, 0, Math.PI*2);
     ctx.fillStyle = color;
     ctx.fill();
+    ctx.shadowBlur = 0;
 }
 
 function clearPreview(){
