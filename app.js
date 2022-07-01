@@ -26,12 +26,18 @@ function playTurn(e){
     let x = e.offsetX;
     let col = Math.floor(x*7 / canvas.width);
     if(insertPiece(col, turn)){
-        if (isFinished(board)) {
+        let state = isFinished(board);
+        if (state) {
             canvas.removeEventListener('click', playTurn);
             canvas.removeEventListener('mousemove', preview);
             alert(`${turn} wins!`);
         }
-        turn = turn==='red' ? 'yellow' : 'red';
+        else if(state === "tie"){
+            canvas.removeEventListener('click', playTurn);
+            canvas.removeEventListener('mousemove', preview);
+            alert("Tie!");
+        }
+        turn = turn === 'red' ? 'yellow' : 'red';
     }
 }
 
@@ -145,7 +151,7 @@ function previewToken(x,color){
     
     ctx.shadowBlur = 3;
     ctx.beginPath();
-    ctx.arc(x, canvas.height/14, (canvas.width/14)-8, 0, Math.PI*2);
+    ctx.arc(x, canvas.height/14, (canvas.width/14)-10, 0, Math.PI*2);
     ctx.fillStyle = secondaryColor;
     ctx.fill();
 
