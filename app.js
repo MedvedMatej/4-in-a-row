@@ -27,12 +27,12 @@ function playTurn(e){
     let col = Math.floor(x*7 / canvas.width);
     if(insertPiece(col, turn)){
         let state = isFinished(board);
-        if (state) {
+        if (state == 'red' || state == 'yellow') {
             canvas.removeEventListener('click', playTurn);
             canvas.removeEventListener('mousemove', preview);
             alert(`${turn} wins!`);
         }
-        else if(state === "tie"){
+        else if(state == "tie"){
             canvas.removeEventListener('click', playTurn);
             canvas.removeEventListener('mousemove', preview);
             alert("Tie!");
